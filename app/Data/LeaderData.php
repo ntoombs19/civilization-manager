@@ -6,8 +6,21 @@ use Spatie\LaravelData\Data;
 use Spatie\LaravelData\Attributes\MapInputName;
 use Spatie\LaravelData\Attributes\WithoutValidation;
 use Spatie\LaravelData\Optional;
+use Spatie\TypeScriptTransformer\Attributes\LiteralTypeScriptType;
 use Spatie\TypeScriptTransformer\Attributes\TypeScript;
+use Spatie\TypeScriptTransformer\Attributes\TypeScriptType;
 
+/**
+ * @property int $id
+ * @property int $civilizationId
+ * @property string $name
+ * @property string $subtitle
+ * @property string $lived
+ * @property string $icon
+ * @property array{name: string, description: string} $trait
+ * @property string[] $titles
+ * @property array{title: string, content: string}[] $historicalInfo
+ */
 #[TypeScript]
 class LeaderData extends Data
 {
@@ -21,9 +34,12 @@ class LeaderData extends Data
         public string $subtitle,
         public string $lived,
         public string $icon,
+        #[LiteralTypeScriptType('{name: string, effect: string}')]
         public array $trait,
+        #[TypeScriptType('string[]')]
         public array $titles,
         #[MapInputName('historical_info')]
+        #[LiteralTypeScriptType('Array<{text: string, heading: string}>')]
         public array $historicalInfo,
     ) {
     }
