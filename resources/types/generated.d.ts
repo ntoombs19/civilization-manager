@@ -12,8 +12,8 @@ export type CivilizationData = {
     leader: LeaderData;
 };
 export type LeaderData = {
-    id: any | number;
-    civilizationId: any | number;
+    id: number;
+    civilizationId: number;
     name: string;
     subtitle: string;
     lived: string;

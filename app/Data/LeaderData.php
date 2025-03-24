@@ -5,31 +5,19 @@ namespace App\Data;
 use Spatie\LaravelData\Data;
 use Spatie\LaravelData\Attributes\MapInputName;
 use Spatie\LaravelData\Attributes\WithoutValidation;
-use Spatie\LaravelData\Optional;
 use Spatie\TypeScriptTransformer\Attributes\LiteralTypeScriptType;
 use Spatie\TypeScriptTransformer\Attributes\TypeScript;
 use Spatie\TypeScriptTransformer\Attributes\TypeScriptType;
 
-/**
- * @property int $id
- * @property int $civilizationId
- * @property string $name
- * @property string $subtitle
- * @property string $lived
- * @property string $icon
- * @property array{name: string, description: string} $trait
- * @property string[] $titles
- * @property array{title: string, content: string}[] $historicalInfo
- */
 #[TypeScript]
 class LeaderData extends Data
 {
     public function __construct(
         #[WithoutValidation]
-        public int|Optional $id = 0,
+        public int $id,
         #[MapInputName('civilization_id')]
         #[WithoutValidation]
-        public int|Optional $civilizationId = 0,
+        public int $civilizationId,
         public string $name,
         public string $subtitle,
         public string $lived,
@@ -47,10 +35,10 @@ class LeaderData extends Data
     /**
      * Transform the data object to a database-ready array
      */
-    public function toDatabase(int $civilizationId): array
+    public function toDatabase(?int $civilizationId = null): array
     {
         return [
-            'civilization_id' => $civilizationId,
+            'civilization_id' => $civilizationId ?? $this->civilizationId,
             'name' => $this->name,
             'subtitle' => $this->subtitle,
             'lived' => $this->lived,
