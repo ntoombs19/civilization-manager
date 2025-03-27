@@ -1,5 +1,6 @@
 import defaultTheme from 'tailwindcss/defaultTheme';
-import forms from '@tailwindcss/forms';
+import forms from '@tailwindcss/forms'
+import textshadow from 'tailwindcss-textshadow'
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -31,11 +32,11 @@ export default {
                     '100%': { opacity: '0' },
                 },
             },
-            shadow: {
-                'text': '0 0 8px rgba(255, 215, 0, 0.5)',
+            textShadow: {
+                'glow': '0 0 8px rgba(255, 215, 0, 0.5)'
             }
         },
     },
 
-    plugins: [forms],
+    plugins: [forms, textshadow],
 };

@@ -3,7 +3,24 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Use Trajan Pro for headings by default */
-h1, h2, h3, h4, h5, h6 {
-    font-family: 'Trajan Pro', serif;
+@layer utilities {
+    h1, h2, h3, h4, h5, h6 {
+        @apply font-serif;
+    }
+
+    h1 {
+        @apply text-4xl md:text-5xl font-bold uppercase tracking-widest text-amber-400 mb-4 leading-tight text-shadow-glow;
+    }
+
+    h2 {
+        @apply text-2xl font-bold text-amber-400 mb-4 text-center tracking-wide text-shadow-glow;
+    }
+
+    h3 {
+        @apply text-amber-400 font-bold text-lg mb-4 uppercase tracking-wider;
+    }
+
+    a {
+        @apply text-amber-100 hover:text-amber-400;
+    }
 }

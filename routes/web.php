@@ -9,10 +9,16 @@ Route::get('/', function () {
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
     ]);
-});
+})->name('home');
+
+Route::get('/leaders', function () {
+    return Inertia::render('Leaders/Index');
+})->name('leaders');
+
+Route::get('/civilizations', function () {
+    return Inertia::render('Civilizations/Index');
+})->name('civilizations');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
