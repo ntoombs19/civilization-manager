@@ -11,45 +11,13 @@ defineProps<{
     canRegister?: boolean;
 }>();
 
-// Star animation setup
-onMounted(() => {
-    const createStars = () => {
-        const starsContainer = document.getElementById('stars-container');
-        if (!starsContainer) return;
-
-        starsContainer.innerHTML = '';
-
-        for (let i = 0; i < 80; i++) {
-            const star = document.createElement('div');
-            const size = Math.random() * 2 + 1;
-            const posX = Math.random() * 100;
-            const posY = Math.random() * 100;
-            const delay = Math.random() * 8;
-            const duration = Math.random() * 4 + 4;
-
-            star.style.width = `${size}px`;
-            star.style.height = `${size}px`;
-            star.style.left = `${posX}%`;
-            star.style.top = `${posY}%`;
-            star.style.animationDelay = `${delay}s`;
-            star.style.animationDuration = `${duration}s`;
-
-            star.className = 'absolute rounded-full bg-yellow-300 animate-twinkle';
-            starsContainer.appendChild(star);
-        }
-    };
-
-    createStars();
-});
 </script>
-
 <template>
     <Head title="Home" />
 
     <div class="min-h-screen flex flex-col items-center justify-center bg-cover bg-center relative font-serif text-amber-100">
         <div class="absolute inset-0 bg-fixed bg-[url('/images/background.png')] bg-cover bg-center opacity-70 z-0"></div>
         <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/70 z-1 pointer-events-none"></div>
-        <div id="stars-container" class="absolute inset-0 overflow-hidden z-0"></div>
 
         <header class="relative z-10 w-full px-6 py-4 flex justify-between items-center gap-4">
             <div class="flex items-center flex-1">
