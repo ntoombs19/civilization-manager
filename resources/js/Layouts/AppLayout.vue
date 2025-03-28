@@ -64,7 +64,7 @@ const appName = computed(() => page.props.appName || 'Civilization Manager');
             </div>
         </nav>
 
-        <main class="flex-1 py-12 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-stone-900 to-stone-800 text-amber-100 font-serif">
+        <main class="max-w-7xl w-full mx-auto flex-1 py-12 px-4 sm:px-6 lg:px-8 text-amber-100 font-serif">
             <slot></slot>
         </main>
 
