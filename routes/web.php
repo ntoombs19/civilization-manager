@@ -1,7 +1,8 @@
 <?php
 
+use App\Http\Controllers\CivilizationController;
+use App\Http\Controllers\LeaderController;
 use App\Http\Controllers\ProfileController;
-use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -12,13 +13,9 @@ Route::get('/', function () {
     ]);
 })->name('home');
 
-Route::get('/leaders', function () {
-    return Inertia::render('Leaders/Index');
-})->name('leaders');
+Route::get('/leaders', [LeaderController::class, 'index'])->name('leaders');
 
-Route::get('/civilizations', function () {
-    return Inertia::render('Civilizations/Index');
-})->name('civilizations');
+Route::get('/civilizations', [CivilizationController::class, 'index'])->name('civilizations');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
