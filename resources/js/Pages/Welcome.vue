@@ -4,6 +4,7 @@ import { onMounted } from 'vue';
 import Button from '@/Components/Button.vue';
 import Card from '@/Components/Card.vue';
 import ApplicationLogo from "@/Components/ApplicationLogo.vue";
+import Divider from "@/Components/Divider.vue";
 
 defineProps<{
     canLogin?: boolean;
@@ -90,10 +91,7 @@ onMounted(() => {
                     <span class="text-white ml-4">Manager</span>
                 </h1>
 
-                <div class="h-[3px] bg-gradient-to-r from-transparent via-amber-600 to-transparent w-3/5 mx-auto mb-10 relative">
-                    <span class="absolute -left-2.5 top-1/2 -translate-y-1/2 text-amber-600 text-2xl">•</span>
-                    <span class="absolute -right-2.5 top-1/2 -translate-y-1/2 text-amber-600 text-2xl">•</span>
-                </div>
+                <Divider />
 
                 <p class="text-lg text-amber-100/90 max-w-2xl mx-auto mb-12 leading-relaxed">
                     Explore the wonders of civilization with detailed information about leaders and civilizations throughout history.
