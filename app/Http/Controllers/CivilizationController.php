@@ -14,7 +14,7 @@ class CivilizationController extends Controller
     {
         $page = intval($request->get('page', 1) ?: 1);
         $search = $request->query('search');
-        $pageSize = $request->query('pageSize', '10');
+        $pageSize = $request->query('pageSize', '12');
         $sort = $request->query('sort', 'name,asc');
         $filters = $request->query('filters', '');
         [$column, $direction] = explode(',', $sort);
