@@ -104,6 +104,12 @@ const handlePageSizeChange = () => {
     updateQueryParams();
 };
 
+const clearSearch = () => {
+    search.value = '';
+    currentPage.value = 1;
+    updateQueryParams();
+};
+
 watch([search, sort, pageSize], () => {
     updateQueryParams();
 });
@@ -134,6 +140,20 @@ defineExpose({
                         class="block w-full rounded-md border-amber-700 bg-stone-800/70 py-1.5 pl-10 pr-3 text-amber-100 shadow-sm focus:border-amber-500 focus:ring-amber-500 placeholder:text-amber-400/50 sm:text-sm sm:leading-6"
                         :placeholder="searchPlaceholder || `Search ${itemName}...`"
                     />
+                </div>
+                <div v-if="search" class="mt-2 flex items-center">
+                    <span class="text-xs text-amber-300/70">Searching for: </span>
+                    <span class="ml-1 text-xs text-amber-200 font-medium">{{ search }}</span>
+                    <button 
+                        @click="clearSearch" 
+                        class="ml-2 inline-flex items-center rounded-md border border-amber-700/50 bg-stone-800/40 px-2 py-0.5 text-xs font-medium text-amber-400 hover:bg-amber-900/20 hover:text-amber-300 transition-colors duration-200"
+                        title="Clear search"
+                    >
+                        <svg class="h-3 w-3 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.28 7.22a.75.75 0 00-1.06 1.06L8.94 10l-1.72 1.72a.75.75 0 101.06 1.06L10 11.06l1.72 1.72a.75.75 0 101.06-1.06L11.06 10l1.72-1.72a.75.75 0 00-1.06-1.06L10 8.94 8.28 7.22z" clip-rule="evenodd" />
+                        </svg>
+                        Clear
+                    </button>
                 </div>
             </div>
             <div class="flex flex-row gap-4">
