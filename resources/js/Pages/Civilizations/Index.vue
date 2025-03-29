@@ -36,45 +36,41 @@ const isLoading = ref(false);
             title="World Civilizations"
             subtitle="Explore the great civilizations that shaped human history with their unique cultures and achievements"
         />
-        <div
-            class="overflow-hidden rounded-lg border border-amber-800/20 shadow-xl shadow-black/20"
+        <DataListLayout
+            :items="civilizations"
+            :page="page"
+            :page-size="pageSize"
+            :total-pages="totalPages"
+            :count="count"
+            :search="search"
+            :sort="sort"
+            :filters="filters"
+            :sort-options="sortOptions"
+            base-route="/civilizations"
+            item-name="civilizations"
+            @update:loading="isLoading = $event"
         >
-            <DataListLayout
-                :items="civilizations"
-                :page="page"
-                :page-size="pageSize"
-                :total-pages="totalPages"
-                :count="count"
-                :search="search"
-                :sort="sort"
-                :filters="filters"
-                :sort-options="sortOptions"
-                base-route="/civilizations"
-                item-name="civilizations"
-                @update:loading="isLoading = $event"
-            >
-                <template #items="{ items }">
-                    <div
-                        class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3"
-                    >
-                        <EntityCard
-                            v-for="civilization in items"
-                            :key="civilization.id"
-                            :icon="civilization.icon"
-                            :name="civilization.name"
-                            :related-entity="
-                                civilization.leader
-                                    ? {
-                                          name: civilization.leader.name,
-                                          prefix: 'Led by',
-                                      }
-                                    : undefined
-                            "
-                            :details="civilization.dawnOfMan"
-                        />
-                    </div>
-                </template>
-            </DataListLayout>
-        </div>
+            <template #items="{ items }">
+                <div
+                    class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3"
+                >
+                    <EntityCard
+                        v-for="civilization in items"
+                        :key="civilization.id"
+                        :icon="civilization.icon"
+                        :name="civilization.name"
+                        :related-entity="
+                            civilization.leader
+                                ? {
+                                      name: civilization.leader.name,
+                                      prefix: 'Led by',
+                                  }
+                                : undefined
+                        "
+                        :details="civilization.dawnOfMan"
+                    />
+                </div>
+            </template>
+        </DataListLayout>
     </AppLayout>
 </template>

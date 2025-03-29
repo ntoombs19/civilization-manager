@@ -120,7 +120,7 @@ defineExpose({
 </script>
 
 <template>
-    <div class="p-6 text-amber-100">
+    <div class="overflow-hidden rounded-lg shadow-lg bg-stone-800 shadow-stone-900  text-amber-100 p-8">
         <!-- Search and filter controls -->
         <div class="mb-6 flex flex-col md:flex-row justify-between gap-4">
             <div class="flex-1 min-w-0">
@@ -144,8 +144,8 @@ defineExpose({
                 <div v-if="search" class="mt-2 flex items-center">
                     <span class="text-xs text-amber-300/70">Searching for: </span>
                     <span class="ml-1 text-xs text-amber-200 font-medium">{{ search }}</span>
-                    <button 
-                        @click="clearSearch" 
+                    <button
+                        @click="clearSearch"
                         class="ml-2 inline-flex items-center rounded-md border border-amber-700/50 bg-stone-800/40 px-2 py-0.5 text-xs font-medium text-amber-400 hover:bg-amber-900/20 hover:text-amber-300 transition-colors duration-200"
                         title="Clear search"
                     >

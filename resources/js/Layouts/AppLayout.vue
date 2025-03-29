@@ -68,8 +68,8 @@ const appName = computed(() => page.props.appName || 'Civilization Manager');
             <slot></slot>
         </main>
 
-        <footer class="bg-stone-900 border-t border-amber-900/30 py-8 px-4">
-            <div class="max-w-7xl mx-auto">
+        <footer class="bg-stone-900 border-t border-amber-900/30 py-8">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
                     <div>
                         <h3>Navigation</h3>

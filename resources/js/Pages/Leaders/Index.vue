@@ -39,46 +39,42 @@ const isLoading = ref(false);
             subtitle="Discover the remarkable individuals who shaped civilizations and changed the course of history"
         />
 
-        <div
-            class="overflow-hidden rounded-lg border border-amber-800/20 shadow-xl shadow-black/20"
+        <DataListLayout
+            :items="leaders"
+            :page="page"
+            :page-size="pageSize"
+            :total-pages="totalPages"
+            :count="count"
+            :search="search"
+            :sort="sort"
+            :filters="filters"
+            :sort-options="sortOptions"
+            base-route="/leaders"
+            item-name="leaders"
+            @update:loading="isLoading = $event"
         >
-            <DataListLayout
-                :items="leaders"
-                :page="page"
-                :page-size="pageSize"
-                :total-pages="totalPages"
-                :count="count"
-                :search="search"
-                :sort="sort"
-                :filters="filters"
-                :sort-options="sortOptions"
-                base-route="/leaders"
-                item-name="leaders"
-                @update:loading="isLoading = $event"
-            >
-                <template #items="{ items }">
-                    <div
-                        class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3"
-                    >
-                        <EntityCard
-                            v-for="leader in items"
-                            :key="leader.id"
-                            :icon="leader.icon"
-                            :name="leader.name"
-                            :subtitle="leader.subtitle"
-                            :time-info="leader.lived"
-                            :related-entity="
-                                leader.civilization
-                                    ? {
-                                          name: leader.civilization.name,
-                                          prefix: 'Civilization',
-                                      }
-                                    : undefined
-                            "
-                        />
-                    </div>
-                </template>
-            </DataListLayout>
-        </div>
+            <template #items="{ items }">
+                <div
+                    class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3"
+                >
+                    <EntityCard
+                        v-for="leader in items"
+                        :key="leader.id"
+                        :icon="leader.icon"
+                        :name="leader.name"
+                        :subtitle="leader.subtitle"
+                        :time-info="leader.lived"
+                        :related-entity="
+                            leader.civilization
+                                ? {
+                                      name: leader.civilization.name,
+                                      prefix: 'Civilization',
+                                  }
+                                : undefined
+                        "
+                    />
+                </div>
+            </template>
+        </DataListLayout>
     </AppLayout>
 </template>
