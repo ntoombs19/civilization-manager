@@ -2,9 +2,12 @@
 import { computed } from 'vue';
 import { Link, usePage } from '@inertiajs/vue3';
 import ApplicationLogo from "@/Components/ApplicationLogo.vue";
+import Breadcrumbs from "@/Components/Breadcrumbs.vue";
 
 const page = usePage();
 const appName = computed(() => page.props.appName || 'Civilization Manager');
+
+const props = page.props
 </script>
 
 <style scoped>
@@ -35,14 +38,14 @@ const appName = computed(() => page.props.appName || 'Civilization Manager');
                             </Link>
                         </div>
                         <div class="hidden md:ml-8 md:flex md:items-center md:space-x-4 mt-1">
-                            <Link :href="route('leaders')"
+                            <Link :href="route('leaders.index')"
                                 class="header-link"
-                                :class="{ 'current': route().current('leaders') }">
+                                :class="{ 'current': route().current('leaders.index') }">
                                 Leaders
                             </Link>
-                            <Link :href="route('civilizations')"
+                            <Link :href="route('civilizations.index')"
                                 class="header-link"
-                                :class="{ 'current': route().current('civilizations') }">
+                                :class="{ 'current': route().current('civilizations.index') }">
                                 Civilizations
                             </Link>
                         </div>
@@ -51,20 +54,22 @@ const appName = computed(() => page.props.appName || 'Civilization Manager');
 
             <!-- Mobile menu -->
             <div class="md:hidden border-t border-amber-900/20 px-2 pt-2 pb-3 flex space-x-1">
-                <Link :href="route('leaders')"
+                <Link :href="route('leaders.index')"
                     class="header-link"
-                    :class="{ 'current': route().current('leaders') }">
+                    :class="{ 'current': route().current('leaders.index') }">
                     Leaders
                 </Link>
-                <Link :href="route('civilizations')"
+                <Link :href="route('civilizations.index')"
                     class="header-link"
-                    :class="{ 'current': route().current('civilizations') }">
+                    :class="{ 'current': route().current('civilizations.index') }">
                     Civilizations
                 </Link>
             </div>
         </nav>
-
-        <main class="max-w-7xl w-full mx-auto flex-1 py-12 px-4 sm:px-6 lg:px-8 text-amber-100 font-serif">
+        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 w-full">
+            <Breadcrumbs :breadcrumbs="props.breadcrumbs" v-if="props.breadcrumbs" />
+        </div>
+        <main class="max-w-7xl w-full mx-auto flex-1 py-6 px-4 sm:px-6 lg:px-8 text-amber-100 font-serif">
             <slot></slot>
         </main>
 
@@ -78,10 +83,10 @@ const appName = computed(() => page.props.appName || 'Civilization Manager');
                                 <Link :href="route('home')" class="footer-link">Home</Link>
                             </li>
                             <li>
-                                <Link :href="route('leaders')" class="footer-link">Leaders</Link>
+                                <Link :href="route('leaders.index')" class="footer-link">Leaders</Link>
                             </li>
                             <li>
-                                <Link :href="route('civilizations')" class="footer-link">Civilizations</Link>
+                                <Link :href="route('civilizations.index')" class="footer-link">Civilizations</Link>
                             </li>
                         </ul>
                     </div>

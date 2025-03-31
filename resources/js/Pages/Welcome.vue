@@ -81,7 +81,7 @@ defineProps<{
                             Discover the unique characteristics, units, and buildings of each civilization
                         </p>
                         <Button
-                            :href="route('civilizations')"
+                            :href="route('civilizations.index')"
                             variant="primary"
                             size="lg"
                             full-width
@@ -104,7 +104,7 @@ defineProps<{
                             Learn about the historical leaders who shaped the course of history
                         </p>
                         <Button
-                            :href="route('leaders')"
+                            :href="route('leaders.index')"
                             variant="primary"
                             size="lg"
                             full-width
