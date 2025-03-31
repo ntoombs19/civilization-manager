@@ -32,10 +32,10 @@ class CivilizationData extends Data
         #[TypeScriptType('string[]')]
         public array $spyNames,
         #[MapInputName('historical_info')]
-        #[LiteralTypeScriptType('Array<{title: string, content: string}>')]
+        #[LiteralTypeScriptType('Array<{text: string, heading: string}>')]
         public array $historicalInfo,
         public string $url,
-        public LeaderData $leader,
+        public ?LeaderData $leader = null,
     ) {
     }
 

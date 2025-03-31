@@ -34,6 +34,6 @@ class Civilization extends Model
 
     public function leader(): HasOne
     {
-        return $this->hasOne(Leader::class);
+        return $this->hasOne(Leader::class, 'civilization_id');
     }
 }

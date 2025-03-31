@@ -29,6 +29,7 @@ class LeaderData extends Data
         #[MapInputName('historical_info')]
         #[LiteralTypeScriptType('Array<{text: string, heading: string}>')]
         public array $historicalInfo,
+        public ?CivilizationData $civilization = null,
     ) {
     }
 

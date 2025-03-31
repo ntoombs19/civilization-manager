@@ -7,7 +7,7 @@ export type CivilizationData = {
     uniqueUnits: Array<{ url: string; name: string }>;
     cityNames: Array<string>;
     spyNames: Array<string>;
-    historicalInfo: Array<{ title: string; content: string }>;
+    historicalInfo: Array<{ text: string; heading: string }>;
     url: string;
     leader: LeaderData;
 };

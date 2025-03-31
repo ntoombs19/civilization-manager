@@ -40,4 +40,13 @@ class LeaderController extends Controller
             'count' => $leaders->total(),
         ]);
     }
+
+    public function show(int $id): Response
+    {
+        $leader = Leader::with('civilization')->findOrFail($id);
+
+        return Inertia::render('Leaders/Show', [
+            'leader' => LeaderData::from($leader),
+        ]);
+    }
 }

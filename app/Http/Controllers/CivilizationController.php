@@ -38,4 +38,13 @@ class CivilizationController extends Controller
             'count' => $civilizations->total(),
         ]);
     }
+
+    public function show(int $id): Response
+    {
+        $civilization = Civilization::with('leader')->findOrFail($id);
+
+        return Inertia::render('Civilizations/Show', [
+            'civilization' => CivilizationData::from($civilization),
+        ]);
+    }
 }

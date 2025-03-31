@@ -64,6 +64,7 @@ const isLoading = ref(false);
                         :name="leader.name"
                         :subtitle="leader.subtitle"
                         :time-info="leader.lived"
+                        :link="route('leaders.show', leader.id)"
                         :related-entity="
                             leader.civilization
                                 ? {

@@ -59,6 +59,7 @@ const isLoading = ref(false);
                         :key="civilization.id"
                         :icon="civilization.icon"
                         :name="civilization.name"
+                        :link="route('civilizations.show', civilization.id)"
                         :related-entity="
                             civilization.leader
                                 ? {

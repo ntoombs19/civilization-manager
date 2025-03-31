@@ -14,8 +14,10 @@ Route::get('/', function () {
 })->name('home');
 
 Route::get('/leaders', [LeaderController::class, 'index'])->name('leaders');
+Route::get('/leaders/{id}', [LeaderController::class, 'show'])->name('leaders.show');
 
 Route::get('/civilizations', [CivilizationController::class, 'index'])->name('civilizations');
+Route::get('/civilizations/{id}', [CivilizationController::class, 'show'])->name('civilizations.show');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
