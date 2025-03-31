@@ -7,6 +7,7 @@ use App\Models\Civilization;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;
+use Illuminate\Support\Facades\Redirect;
 
 class CivilizationController extends Controller
 {
@@ -36,6 +37,13 @@ class CivilizationController extends Controller
             'pageSize' => $civilizations->perPage(),
             'totalPages' => $civilizations->lastPage(),
             'count' => $civilizations->total(),
+            'actions' => auth()->check() ? [
+                'create' => [
+                    'url' => route('civilizations.create'),
+                    'label' => 'Create Civilization',
+                    'variant' => 'primary',
+                ],
+            ] : [],
         ]);
     }
 
@@ -45,6 +53,122 @@ class CivilizationController extends Controller
 
         return Inertia::render('Civilizations/Show', [
             'civilization' => CivilizationData::from($civilization),
+            'actions' => auth()->check() ? [
+                'edit' => [
+                    'url' => route('civilizations.edit', $id),
+                    'label' => 'Edit',
+                    'variant' => 'primary',
+                ],
+                'delete' => [
+                    'url' =>  route('civilizations.delete', $id),
+                    'label' => 'Delete',
+                    'variant' => 'danger',
+                ],
+            ] : [],
         ]);
+    }
+
+    public function create(): Response
+    {
+        return Inertia::render('Civilizations/Create', [
+            'civilization' => new CivilizationData(
+                id: 0,
+                name: '',
+                icon: '',
+                dawnOfMan: '',
+                uniqueBuildings: [],
+                uniqueUnits: [],
+                cityNames: [],
+                spyNames: [],
+                historicalInfo: [],
+                url: '',
+            ),
+        ]);
+    }
+
+    public function store(Request $request)
+    {
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'icon' => 'required|string|max:255',
+            'dawnOfMan' => 'required|string',
+            'uniqueBuildings' => 'required|array',
+            'uniqueUnits' => 'required|array',
+            'cityNames' => 'required|array',
+            'spyNames' => 'required|array',
+            'historicalInfo' => 'required|array',
+            'url' => 'required|string|max:255',
+        ]);
+
+        $data = CivilizationData::from([
+            'id' => 0,
+            'name' => $validated['name'],
+            'icon' => $validated['icon'],
+            'dawn_of_man' => $validated['dawnOfMan'],
+            'unique_buildings' => $validated['uniqueBuildings'],
+            'unique_units' => $validated['uniqueUnits'],
+            'city_names' => $validated['cityNames'],
+            'spy_names' => $validated['spyNames'],
+            'historical_info' => $validated['historicalInfo'],
+            'url' => $validated['url'],
+        ]);
+
+        $civilization = Civilization::create($data->toDatabase());
+
+        return Redirect::route('civilizations.show', $civilization->id)
+            ->with('success', 'Civilization created successfully.');
+    }
+
+    public function edit(int $id): Response
+    {
+        $civilization = Civilization::findOrFail($id);
+
+        return Inertia::render('Civilizations/Edit', [
+            'civilization' => CivilizationData::from($civilization),
+        ]);
+    }
+
+    public function update(Request $request, int $id)
+    {
+        $civilization = Civilization::findOrFail($id);
+
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'icon' => 'required|string|max:255',
+            'dawnOfMan' => 'required|string',
+            'uniqueBuildings' => 'required|array',
+            'uniqueUnits' => 'required|array',
+            'cityNames' => 'required|array',
+            'spyNames' => 'required|array',
+            'historicalInfo' => 'required|array',
+            'url' => 'required|string|max:255',
+        ]);
+
+        $data = CivilizationData::from([
+            'id' => $civilization->id,
+            'name' => $validated['name'],
+            'icon' => $validated['icon'],
+            'dawn_of_man' => $validated['dawnOfMan'],
+            'unique_buildings' => $validated['uniqueBuildings'],
+            'unique_units' => $validated['uniqueUnits'],
+            'city_names' => $validated['cityNames'],
+            'spy_names' => $validated['spyNames'],
+            'historical_info' => $validated['historicalInfo'],
+            'url' => $validated['url'],
+        ]);
+
+        $civilization->update($data->toDatabase());
+
+        return Redirect::route('civilizations.show', $civilization->id)
+            ->with('success', 'Civilization updated successfully.');
+    }
+
+    public function delete(int $id)
+    {
+        $civilization = Civilization::findOrFail($id);
+        $civilization->delete();
+
+        return Redirect::route('civilizations.index')
+            ->with('success', 'Civilization deleted successfully.');
     }
 }

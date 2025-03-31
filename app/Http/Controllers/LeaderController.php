@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Data\LeaderData;
 use App\Models\Leader;
+use App\Models\Civilization;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;
+use Illuminate\Support\Facades\Redirect;
 
 class LeaderController extends Controller
 {
@@ -38,15 +40,142 @@ class LeaderController extends Controller
             'pageSize' => $leaders->perPage(),
             'totalPages' => $leaders->lastPage(),
             'count' => $leaders->total(),
+            'actions' => auth()->check() ? [
+                'create' => [
+                    'url' => route('leaders.create'),
+                    'label' => 'Create Leader',
+                    'variant' => 'primary',
+                ],
+            ] : [],
         ]);
     }
 
-    public function show(int $id): Response
+    public function show(string $id): Response
     {
         $leader = Leader::with('civilization')->findOrFail($id);
 
         return Inertia::render('Leaders/Show', [
             'leader' => LeaderData::from($leader),
+            'actions' => auth()->check() ? [
+                'edit' => [
+                    'url' => route('leaders.edit', $id),
+                    'label' => 'Edit',
+                    'variant' => 'primary',
+                ],
+                'delete' => [
+                    'url' =>  route('leaders.delete', $id),
+                    'label' => 'Delete',
+                    'variant' => 'danger',
+                ],
+            ] : [],
         ]);
+    }
+
+    public function create(): Response
+    {
+        $civilizations = Civilization::all();
+
+        return Inertia::render('Leaders/Create', [
+            'leader' => new LeaderData(
+                id: 0,
+                civilizationId: 0,
+                name: '',
+                subtitle: '',
+                lived: '',
+                icon: '',
+                trait: ['name' => '', 'effect' => ''],
+                titles: [],
+                historicalInfo: [],
+            ),
+            'civilizations' => $civilizations,
+        ]);
+    }
+
+    public function store(Request $request)
+    {
+        $validated = $request->validate([
+            'civilizationId' => 'required|exists:civilizations,id',
+            'name' => 'required|string|max:255',
+            'subtitle' => 'required|string|max:255',
+            'lived' => 'required|string|max:255',
+            'icon' => 'required|string|max:255',
+            'trait' => 'required|array',
+            'trait.name' => 'required|string|max:255',
+            'trait.effect' => 'required|string',
+            'titles' => 'required|array',
+            'historicalInfo' => 'required|array',
+        ]);
+
+        $data = LeaderData::from([
+            'id' => 0,
+            'civilization_id' => $validated['civilizationId'],
+            'name' => $validated['name'],
+            'subtitle' => $validated['subtitle'],
+            'lived' => $validated['lived'],
+            'icon' => $validated['icon'],
+            'trait' => $validated['trait'],
+            'titles' => $validated['titles'],
+            'historical_info' => $validated['historicalInfo'],
+        ]);
+
+        $leader = Leader::create($data->toDatabase());
+
+        return Redirect::route('leaders.show', $leader->id)
+            ->with('success', 'Leader created successfully.');
+    }
+
+    public function edit(int $id): Response
+    {
+        $leader = Leader::with('civilization')->findOrFail($id);
+        $civilizations = Civilization::all();
+
+        return Inertia::render('Leaders/Edit', [
+            'leader' => LeaderData::from($leader),
+            'civilizations' => $civilizations,
+        ]);
+    }
+
+    public function update(Request $request, int $id)
+    {
+        $leader = Leader::findOrFail($id);
+
+        $validated = $request->validate([
+            'civilizationId' => 'required|exists:civilizations,id',
+            'name' => 'required|string|max:255',
+            'subtitle' => 'required|string|max:255',
+            'lived' => 'required|string|max:255',
+            'icon' => 'required|string|max:255',
+            'trait' => 'required|array',
+            'trait.name' => 'required|string|max:255',
+            'trait.effect' => 'required|string',
+            'titles' => 'required|array',
+            'historicalInfo' => 'required|array',
+        ]);
+
+        $data = LeaderData::from([
+            'id' => $leader->id,
+            'civilization_id' => $validated['civilizationId'],
+            'name' => $validated['name'],
+            'subtitle' => $validated['subtitle'],
+            'lived' => $validated['lived'],
+            'icon' => $validated['icon'],
+            'trait' => $validated['trait'],
+            'titles' => $validated['titles'],
+            'historical_info' => $validated['historicalInfo'],
+        ]);
+
+        $leader->update($data->toDatabase());
+
+        return Redirect::route('leaders.show', $leader->id)
+            ->with('success', 'Leader updated successfully.');
+    }
+
+    public function delete(int $id)
+    {
+        $leader = Leader::findOrFail($id);
+        $leader->delete();
+
+        return Redirect::route('leaders.index')
+            ->with('success', 'Leader deleted successfully.');
     }
 }
