@@ -15,7 +15,7 @@ defineProps<{
 </script>
 
 <template>
-  <nav>
+  <nav class="px-4 py-6 sm:px-6 lg:px-8">
     <ol class="flex flex-wrap items-center text-sm text-gray-500">
       <li v-for="(breadcrumb, i) in breadcrumbs" :key="i" class="flex">
         <svg v-if="i !== 0" class="h-4 w-4 mx-1 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">

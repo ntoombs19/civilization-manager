@@ -96,7 +96,7 @@ console.log(props.actions);
                 </Link>
             </div>
         </nav>
-        <div class="flex justify-between items-center gap-6 mx-auto w-full max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center gap-6 mx-auto w-full max-w-7xl">
             <Breadcrumbs
                 :breadcrumbs="props.breadcrumbs"
                 v-if="props.breadcrumbs"

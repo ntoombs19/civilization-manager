@@ -26,15 +26,15 @@ const classes = computed(() => {
 
   const sizeClasses = {
     sm: 'px-4 py-1.5 text-xs',
-    md: 'px-6 py-2 text-sm',
-    lg: 'px-8 py-3 text-base'
+    md: 'px-6 py-2.5 text-sm',
+    lg: 'px-8 py-3.5 text-base'
   };
 
   const variantClasses = {
     primary: 'bg-gradient-to-b from-amber-500 to-amber-700 text-stone-900 border-amber-300 hover:from-amber-400 hover:to-amber-600 hover:shadow-lg hover:shadow-amber-600/40 hover:-translate-y-0.5',
     secondary: 'bg-gradient-to-b from-amber-700 to-amber-900 text-amber-100 border-amber-600 hover:from-amber-600 hover:to-amber-800 hover:shadow-lg hover:shadow-amber-700/30 hover:-translate-y-0.5',
     outline: 'bg-transparent border-amber-600 text-amber-400 hover:bg-amber-900/30 hover:text-amber-300 hover:border-amber-400 hover:-translate-y-0.5',
-    danger: 'inline-flex items-center rounded-md border border-transparent bg-red-600 px-4 py-2 text-xs font-semibold uppercase tracking-widest text-white transition duration-150 ease-in-out hover:bg-red-500 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 active:bg-red-700 dark:focus:ring-offset-gray-800',
+    danger: 'inline-flex items-center rounded-md border border-transparent bg-red-600 tracking-widest text-white transition duration-150 ease-in-out hover:bg-red-500 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 active:bg-red-700 dark:focus:ring-offset-gray-800',
   };
 
   const disabledClasses = props.disabled

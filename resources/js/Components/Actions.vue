@@ -34,6 +34,7 @@ const deleteRecord = (url: string) => {
         <div v-for="action in props.actions">
             <Button
                 v-if="action.url && action.variant !== 'danger'"
+                size="sm"
                 :href="action.url"
                 :variant="action.variant"
             >
@@ -42,6 +43,7 @@ const deleteRecord = (url: string) => {
 
             <Button
                 v-else-if="action.variant === 'danger'"
+                size="sm"
                 @click="confirmDeletion"
                 variant="danger"
             >
@@ -64,10 +66,11 @@ const deleteRecord = (url: string) => {
                         <Button
                             @click="confirmingDeletion = false"
                             variant="outline"
+                            size="sm"
                         >
                             Cancel
                         </Button>
-                        <Button variant="danger" @click="() => deleteRecord(action.url)">
+                        <Button variant="danger" size="sm" @click="() => deleteRecord(action.url)">
                             Delete
                         </Button>
                     </div>

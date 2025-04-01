@@ -3,6 +3,7 @@ import { ref, watch, computed } from 'vue';
 import { router } from '@inertiajs/vue3';
 import debounce from 'lodash/debounce';
 import Pagination from '@/Components/Pagination.vue';
+import Select from '@/Components/Select.vue';
 
 interface SortOption {
     value: string;
@@ -39,7 +40,7 @@ const pageSize = ref(props.pageSize.toString());
 const currentPage = ref(props.page);
 const loading = ref(false);
 
-const pageSizeOptions = [
+const pageSizeOptions = props.pageSizeOptions || [
     { value: '12', label: '12 per page' },
     { value: '24', label: '24 per page' },
     { value: '48', label: '48 per page' },
@@ -95,12 +96,14 @@ const handleSearchInput = () => {
     updateQueryParams();
 };
 
-const handleSortChange = () => {
+const handlePageSizeChange = (value: string) => {
+    pageSize.value = value;
+    currentPage.value = 1; // Reset to first page when changing page size
     updateQueryParams();
 };
 
-const handlePageSizeChange = () => {
-    currentPage.value = 1; // Reset to first page when changing page size
+const handleSortChange = (value: string) => {
+    sort.value = value;
     updateQueryParams();
 };
 
@@ -110,7 +113,7 @@ const clearSearch = () => {
     updateQueryParams();
 };
 
-watch([search, sort, pageSize], () => {
+watch([search], () => {
     updateQueryParams();
 });
 
@@ -159,29 +162,23 @@ defineExpose({
             <div class="flex flex-row gap-4">
                 <div class="min-w-32">
                     <label for="pageSize" class="sr-only">Items per page</label>
-                    <select
+                    <Select
                         id="pageSize"
-                        v-model="pageSize"
-                        @change="handlePageSizeChange"
-                        class="block w-full rounded-md border-amber-700 bg-stone-800/70 py-1.5 pl-3 pr-10 text-amber-100 shadow-sm focus:border-amber-500 focus:ring-amber-500 sm:text-sm sm:leading-6"
-                    >
-                        <option v-for="option in pageSizeOptions" :key="option.value" :value="option.value">
-                            {{ option.label }}
-                        </option>
-                    </select>
+                        :modelValue="pageSize"
+                        :options="pageSizeOptions"
+                        customClass="py-1.5 pl-3 pr-10 sm:text-sm sm:leading-6"
+                        @update:modelValue="handlePageSizeChange"
+                    />
                 </div>
                 <div class="min-w-40">
                     <label for="sort" class="sr-only">Sort by</label>
-                    <select
+                    <Select
                         id="sort"
-                        v-model="sort"
-                        @change="handleSortChange"
-                        class="block w-full rounded-md border-amber-700 bg-stone-800/70 py-1.5 pl-3 pr-10 text-amber-100 shadow-sm focus:border-amber-500 focus:ring-amber-500 sm:text-sm sm:leading-6"
-                    >
-                        <option v-for="option in sortOptions" :key="option.value" :value="option.value">
-                            {{ option.label }}
-                        </option>
-                    </select>
+                        :modelValue="sort"
+                        :options="sortOptions"
+                        customClass="py-1.5 pl-3 pr-10 sm:text-sm sm:leading-6"
+                        @update:modelValue="handleSortChange"
+                    />
                 </div>
             </div>
         </div>
