@@ -124,7 +124,7 @@ class LeaderController extends Controller
             ->with('success', 'Leader created successfully.');
     }
 
-    public function edit(int $id): Response
+    public function edit(string $id): Response
     {
         $leader = Leader::with('civilization')->findOrFail($id);
         $civilizations = Civilization::all();
@@ -170,7 +170,7 @@ class LeaderController extends Controller
             ->with('success', 'Leader updated successfully.');
     }
 
-    public function delete(int $id)
+    public function delete(string $id)
     {
         $leader = Leader::findOrFail($id);
         $leader->delete();

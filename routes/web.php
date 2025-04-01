@@ -12,6 +12,7 @@ Route::get('/', function () {
     return Inertia::render('Index', [
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
+        'isAuthenticated' => auth()->check(),
     ]);
 })->name('home')->breadcrumb('Home');
 

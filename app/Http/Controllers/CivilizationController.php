@@ -47,7 +47,7 @@ class CivilizationController extends Controller
         ]);
     }
 
-    public function show(int $id): Response
+    public function show(string $id): Response
     {
         $civilization = Civilization::with('leader')->findOrFail($id);
 
@@ -119,7 +119,7 @@ class CivilizationController extends Controller
             ->with('success', 'Civilization created successfully.');
     }
 
-    public function edit(int $id): Response
+    public function edit(string $id): Response
     {
         $civilization = Civilization::findOrFail($id);
 
@@ -163,7 +163,7 @@ class CivilizationController extends Controller
             ->with('success', 'Civilization updated successfully.');
     }
 
-    public function delete(int $id)
+    public function delete(string $id)
     {
         $civilization = Civilization::findOrFail($id);
         $civilization->delete();

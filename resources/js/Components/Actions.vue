@@ -67,7 +67,7 @@ const deleteRecord = (url: string) => {
                         >
                             Cancel
                         </Button>
-                        <Button variant="danger" @click="deleteRecord">
+                        <Button variant="danger" @click="() => deleteRecord(action.url)">
                             Delete
                         </Button>
                     </div>
