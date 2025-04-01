@@ -7,7 +7,7 @@ import { CivilizationData } from '@/types/generated';
 import { Head } from '@inertiajs/vue3';
 import { ref } from 'vue';
 
-const props = defineProps<{
+defineProps<{
     civilizations: Array<CivilizationData>;
     page: number;
     pageSize: number;

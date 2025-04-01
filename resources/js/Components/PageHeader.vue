@@ -1,37 +1,31 @@
 <script setup lang="ts">
-import Divider from "@/Components/Divider.vue";
+import Divider from '@/Components/Divider.vue';
 
 interface Props {
-  title: string;
-  subtitle?: string;
-  align?: 'left' | 'center' | 'right';
-  divider?: boolean;
+    title: string;
+    subtitle?: string;
 }
 
-const props = withDefaults(defineProps<Props>(), {
-  subtitle: '',
-  align: 'center',
-  divider: true
+withDefaults(defineProps<Props>(), {
+    subtitle: '',
+    align: 'center',
 });
-
-const alignmentClasses = {
-  left: 'text-left',
-  center: '',
-  right: 'text-right ml-auto'
-};
 </script>
 <template>
-  <div class="max-w-7xl mx-auto mb-16 text-center">
-    <h1>
-      {{ title }}
-    </h1>
+    <div class="mx-auto mb-16 max-w-7xl text-center">
+        <h1>
+            {{ title }}
+        </h1>
 
-    <p v-if="subtitle" class="text-lg max-w-3xl mx-auto text-amber-100/80 mb-8 leading-relaxed text-center">
-      {{ subtitle }}
-    </p>
+        <p
+            v-if="subtitle"
+            class="mx-auto mb-8 max-w-3xl text-center text-lg leading-relaxed text-amber-100/80"
+        >
+            {{ subtitle }}
+        </p>
 
-    <Divider v-if="divider" class="mb-8" />
+        <Divider class="mb-8" />
 
-    <slot></slot>
-  </div>
+        <slot></slot>
+    </div>
 </template>

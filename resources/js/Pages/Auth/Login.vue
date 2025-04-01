@@ -1,10 +1,10 @@
 <script setup lang="ts">
+import Button from '@/Components/Button.vue';
 import Checkbox from '@/Components/Checkbox.vue';
-import GuestLayout from '@/Layouts/GuestLayout.vue';
 import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
-import Button from '@/Components/Button.vue';
 import TextInput from '@/Components/TextInput.vue';
+import GuestLayout from '@/Layouts/GuestLayout.vue';
 import { Head, Link, useForm } from '@inertiajs/vue3';
 
 defineProps<{
@@ -80,16 +80,12 @@ const submit = () => {
                 <Link
                     v-if="canResetPassword"
                     :href="route('password.request')"
-                    class="text-sm text-amber-400 hover:text-amber-300 transition-colors duration-300"
+                    class="text-sm text-amber-400 transition-colors duration-300 hover:text-amber-300"
                 >
                     Forgot your password?
                 </Link>
 
-                <Button
-                    class="ms-4"
-                    :disabled="form.processing"
-                    type="submit"
-                >
+                <Button class="ms-4" :disabled="form.processing" type="submit">
                     Log in
                 </Button>
             </div>

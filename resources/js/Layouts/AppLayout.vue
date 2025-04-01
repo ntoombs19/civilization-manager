@@ -1,16 +1,17 @@
 <script setup lang="ts">
+import Actions, { ActionsType } from '@/Components/Actions.vue';
 import ApplicationLogo from '@/Components/ApplicationLogo.vue';
-import Breadcrumbs, {BreadcrumbsType} from '@/Components/Breadcrumbs.vue';
+import Breadcrumbs, { BreadcrumbsType } from '@/Components/Breadcrumbs.vue';
+import { PageProps } from '@/types';
 import { Link, usePage } from '@inertiajs/vue3';
 import { computed } from 'vue';
-import Actions, { ActionsType } from "@/Components/Actions.vue";
-import { PageProps } from '@/types';
 
-
-const page = usePage<{
-    breadcrumbs?: BreadcrumbsType,
-    actions?: ActionsType
-} & PageProps>();
+const page = usePage<
+    {
+        breadcrumbs?: BreadcrumbsType;
+        actions?: ActionsType;
+    } & PageProps
+>();
 const appName = computed(() => page.props.appName || 'Civilization Manager');
 
 const props = page.props;
@@ -96,12 +97,17 @@ console.log(props.actions);
                 </Link>
             </div>
         </nav>
-        <div class="flex justify-between items-center gap-6 mx-auto w-full max-w-7xl">
+        <div
+            class="mx-auto flex w-full max-w-7xl items-center justify-between gap-6"
+        >
             <Breadcrumbs
                 :breadcrumbs="props.breadcrumbs"
                 v-if="props.breadcrumbs"
             />
-            <Actions v-if="props.actions" :actions="Object.values(props.actions)" />
+            <Actions
+                v-if="props.actions"
+                :actions="Object.values(props.actions)"
+            />
         </div>
         <main
             class="mx-auto w-full max-w-7xl flex-1 px-4 py-6 font-serif text-amber-100 sm:px-6 lg:px-8"

@@ -5,7 +5,7 @@ defineProps<{
 </script>
 
 <template>
-    <span class="px-3 py-1 bg-stone-800/50 rounded-full text-amber-300 text-sm">
+    <span class="rounded-full bg-stone-800/50 px-3 py-1 text-sm text-amber-300">
         {{ text }}
     </span>
-</template> 
+</template>

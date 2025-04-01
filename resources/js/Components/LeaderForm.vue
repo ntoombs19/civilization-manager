@@ -1,16 +1,16 @@
 <script setup lang="ts">
+import Button from '@/Components/Button.vue';
+import InputError from '@/Components/InputError.vue';
+import InputLabel from '@/Components/InputLabel.vue';
+import Select from '@/Components/Select.vue';
+import TextArea from '@/Components/TextArea.vue';
+import TextInput from '@/Components/TextInput.vue';
 import { LeaderData } from '@/types/generated';
 import { useForm } from '@inertiajs/vue3';
-import InputLabel from '@/Components/InputLabel.vue';
-import TextInput from '@/Components/TextInput.vue';
-import TextArea from '@/Components/TextArea.vue';
-import InputError from '@/Components/InputError.vue';
-import Button from "@/Components/Button.vue";
-import Select from "@/Components/Select.vue";
 
 const props = defineProps<{
     leader: LeaderData;
-    civilizations: Array<{id: number, name: string}>;
+    civilizations: Array<{ id: number; name: string }>;
     submitLabel?: string;
     isEdit?: boolean;
 }>();
@@ -18,7 +18,8 @@ const props = defineProps<{
 const emits = defineEmits(['submit']);
 
 // Set default values for props
-const submitLabel = props.submitLabel || (props.isEdit ? 'Save Changes' : 'Create Leader');
+const submitLabel =
+    props.submitLabel || (props.isEdit ? 'Save Changes' : 'Create Leader');
 
 // Initialize the form with the leader data
 const form = useForm({
@@ -73,7 +74,10 @@ const submit = () => {
                         required
                         @update:modelValue="handleCivilizationChange"
                     />
-                    <InputError :message="form.errors.civilizationId" class="mt-2" />
+                    <InputError
+                        :message="form.errors.civilizationId"
+                        class="mt-2"
+                    />
                 </div>
 
                 <div>
@@ -155,12 +159,16 @@ const submit = () => {
                         <button
                             type="button"
                             @click="addNewTitle"
-                            class="text-amber-400 hover:text-amber-300 text-sm"
+                            class="text-sm text-amber-400 hover:text-amber-300"
                         >
                             + Add Title
                         </button>
                     </div>
-                    <div v-for="(title, index) in form.titles" :key="index" class="mt-2 flex gap-2 items-start">
+                    <div
+                        v-for="(title, index) in form.titles"
+                        :key="index"
+                        class="mt-2 flex items-start gap-2"
+                    >
                         <div class="flex-1">
                             <TextInput
                                 :id="`title-${index}`"
@@ -174,7 +182,7 @@ const submit = () => {
                         <button
                             type="button"
                             @click="removeTitle(index)"
-                            class="text-red-500 hover:text-red-400 mt-2"
+                            class="mt-2 text-red-500 hover:text-red-400"
                         >
                             Remove
                         </button>
@@ -185,22 +193,31 @@ const submit = () => {
                 <!-- Historical Info -->
                 <div>
                     <div class="flex items-center justify-between">
-                        <InputLabel for="historicalInfo" value="Historical Information" />
+                        <InputLabel
+                            for="historicalInfo"
+                            value="Historical Information"
+                        />
                         <button
                             type="button"
                             @click="addNewHistoricalInfo"
-                            class="text-amber-400 hover:text-amber-300 text-sm"
+                            class="text-sm text-amber-400 hover:text-amber-300"
                         >
                             + Add Historical Info
                         </button>
                     </div>
-                    <div v-for="(info, index) in form.historicalInfo" :key="index" class="mt-2 flex flex-col gap-2">
+                    <div
+                        v-for="(info, index) in form.historicalInfo"
+                        :key="index"
+                        class="mt-2 flex flex-col gap-2"
+                    >
                         <div class="flex items-center justify-between">
-                            <h4 class="text-amber-400 text-sm">Entry {{ index + 1 }}</h4>
+                            <h4 class="text-sm text-amber-400">
+                                Entry {{ index + 1 }}
+                            </h4>
                             <button
                                 type="button"
                                 @click="removeHistoricalInfo(index)"
-                                class="text-red-500 hover:text-red-400 text-sm"
+                                class="text-sm text-red-500 hover:text-red-400"
                             >
                                 Remove
                             </button>
@@ -222,11 +239,16 @@ const submit = () => {
                             required
                         />
                     </div>
-                    <InputError :message="form.errors.historicalInfo" class="mt-2" />
+                    <InputError
+                        :message="form.errors.historicalInfo"
+                        class="mt-2"
+                    />
                 </div>
 
                 <div class="flex items-center justify-end gap-4">
-                    <Button :disabled="form.processing">{{ submitLabel }}</Button>
+                    <Button :disabled="form.processing">{{
+                        submitLabel
+                    }}</Button>
                 </div>
             </form>
         </div>

@@ -48,7 +48,8 @@ console.log(props);
                         :href="route('logout')"
                         method="post"
                         size="sm"
-                        variant="primary">
+                        variant="primary"
+                    >
                         Log out
                     </Button>
                 </template>

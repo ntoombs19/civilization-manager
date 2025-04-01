@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import GuestLayout from '@/Layouts/GuestLayout.vue';
+import Button from '@/Components/Button.vue';
 import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
-import Button from '@/Components/Button.vue';
 import TextInput from '@/Components/TextInput.vue';
+import GuestLayout from '@/Layouts/GuestLayout.vue';
 import { Head, useForm } from '@inertiajs/vue3';
 
 defineProps<{
@@ -29,10 +29,7 @@ const submit = () => {
             you to choose a new one.
         </div>
 
-        <div
-            v-if="status"
-            class="mb-4 text-sm font-medium text-green-500"
-        >
+        <div v-if="status" class="mb-4 text-sm font-medium text-green-500">
             {{ status }}
         </div>
 
@@ -54,10 +51,7 @@ const submit = () => {
             </div>
 
             <div class="mt-4 flex items-center justify-end">
-                <Button
-                    :disabled="form.processing"
-                    type="submit"
-                >
+                <Button :disabled="form.processing" type="submit">
                     Email Password Reset Link
                 </Button>
             </div>

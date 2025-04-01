@@ -17,44 +17,107 @@ defineProps<{
 
 <template>
     <Link v-if="link" :href="link" class="block">
-        <div class="relative overflow-hidden shadow-md shadow-stone-900 rounded-lg transform-gpu hover:scale-105 transition-all duration-500 group">
-            <div class="h-full flex flex-col overflow-hidden bg-gradient-to-br from-stone-800 to-stone-900 border border-amber-800/30 rounded-lg">
-                <div class="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-amber-700 via-amber-500 to-amber-700"></div>
+        <div
+            class="group relative transform-gpu overflow-hidden rounded-lg shadow-md shadow-stone-900 transition-all duration-500 hover:scale-105"
+        >
+            <div
+                class="flex h-full flex-col overflow-hidden rounded-lg border border-amber-800/30 bg-gradient-to-br from-stone-800 to-stone-900"
+            >
+                <div
+                    class="absolute left-0 right-0 top-0 h-0.5 bg-gradient-to-r from-amber-700 via-amber-500 to-amber-700"
+                ></div>
                 <div class="p-4">
                     <div class="flex items-center space-x-3">
-                        <img v-if="icon" :src="icon" :alt="name" class="w-12 h-12 object-cover rounded-full border border-amber-600/30 shadow-md">
-                        <div class="flex-1 min-w-0">
-                            <h3 class="text-lg font-bold truncate text-amber-200">{{ name }}</h3>
-                            <p v-if="subtitle" class="text-sm text-amber-300/80 truncate">{{ subtitle }}</p>
-                            <p v-if="relatedEntity" class="text-sm text-amber-500 font-medium mt-1">
-                                {{ relatedEntity.prefix || 'Related to' }}: {{ relatedEntity.name }}
+                        <img
+                            v-if="icon"
+                            :src="icon"
+                            :alt="name"
+                            class="h-12 w-12 rounded-full border border-amber-600/30 object-cover shadow-md"
+                        />
+                        <div class="min-w-0 flex-1">
+                            <h3
+                                class="truncate text-lg font-bold text-amber-200"
+                            >
+                                {{ name }}
+                            </h3>
+                            <p
+                                v-if="subtitle"
+                                class="truncate text-sm text-amber-300/80"
+                            >
+                                {{ subtitle }}
                             </p>
-                            <p v-if="details" class="text-sm text-amber-100/70 line-clamp-2 mt-2">
+                            <p
+                                v-if="relatedEntity"
+                                class="mt-1 text-sm font-medium text-amber-500"
+                            >
+                                {{ relatedEntity.prefix || 'Related to' }}:
+                                {{ relatedEntity.name }}
+                            </p>
+                            <p
+                                v-if="details"
+                                class="mt-2 line-clamp-2 text-sm text-amber-100/70"
+                            >
                                 {{ details }}
                             </p>
-                            <p v-if="timeInfo" class="text-xs text-amber-400/60 mt-1">{{ timeInfo }}</p>
+                            <p
+                                v-if="timeInfo"
+                                class="mt-1 text-xs text-amber-400/60"
+                            >
+                                {{ timeInfo }}
+                            </p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </Link>
-    <div v-else class="relative overflow-hidden shadow-xl shadow-black/50 rounded-lg transform-gpu hover:scale-105 transition-all duration-500 group">
-        <div class="h-full flex flex-col overflow-hidden bg-gradient-to-br from-stone-800 to-stone-900 border border-amber-800/30 rounded-lg">
-            <div class="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-amber-700 via-amber-500 to-amber-700"></div>
+    <div
+        v-else
+        class="group relative transform-gpu overflow-hidden rounded-lg shadow-xl shadow-black/50 transition-all duration-500 hover:scale-105"
+    >
+        <div
+            class="flex h-full flex-col overflow-hidden rounded-lg border border-amber-800/30 bg-gradient-to-br from-stone-800 to-stone-900"
+        >
+            <div
+                class="absolute left-0 right-0 top-0 h-0.5 bg-gradient-to-r from-amber-700 via-amber-500 to-amber-700"
+            ></div>
             <div class="p-4">
                 <div class="flex items-center space-x-3">
-                    <img v-if="icon" :src="icon" :alt="name" class="w-12 h-12 object-cover rounded-full border border-amber-600/30 shadow-md">
-                    <div class="flex-1 min-w-0">
-                        <h3 class="text-lg font-bold truncate text-amber-200">{{ name }}</h3>
-                        <p v-if="subtitle" class="text-sm text-amber-300/80 truncate">{{ subtitle }}</p>
-                        <p v-if="relatedEntity" class="text-sm text-amber-500 font-medium mt-1">
-                            {{ relatedEntity.prefix || 'Related to' }}: {{ relatedEntity.name }}
+                    <img
+                        v-if="icon"
+                        :src="icon"
+                        :alt="name"
+                        class="h-12 w-12 rounded-full border border-amber-600/30 object-cover shadow-md"
+                    />
+                    <div class="min-w-0 flex-1">
+                        <h3 class="truncate text-lg font-bold text-amber-200">
+                            {{ name }}
+                        </h3>
+                        <p
+                            v-if="subtitle"
+                            class="truncate text-sm text-amber-300/80"
+                        >
+                            {{ subtitle }}
                         </p>
-                        <p v-if="details" class="text-sm text-amber-100/70 line-clamp-2 mt-2">
+                        <p
+                            v-if="relatedEntity"
+                            class="mt-1 text-sm font-medium text-amber-500"
+                        >
+                            {{ relatedEntity.prefix || 'Related to' }}:
+                            {{ relatedEntity.name }}
+                        </p>
+                        <p
+                            v-if="details"
+                            class="mt-2 line-clamp-2 text-sm text-amber-100/70"
+                        >
                             {{ details }}
                         </p>
-                        <p v-if="timeInfo" class="text-xs text-amber-400/60 mt-1">{{ timeInfo }}</p>
+                        <p
+                            v-if="timeInfo"
+                            class="mt-1 text-xs text-amber-400/60"
+                        >
+                            {{ timeInfo }}
+                        </p>
                     </div>
                 </div>
             </div>

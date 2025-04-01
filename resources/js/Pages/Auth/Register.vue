@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import GuestLayout from '@/Layouts/GuestLayout.vue';
+import Button from '@/Components/Button.vue';
 import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
-import Button from '@/Components/Button.vue';
 import TextInput from '@/Components/TextInput.vue';
+import GuestLayout from '@/Layouts/GuestLayout.vue';
 import { Head, Link, useForm } from '@inertiajs/vue3';
 
 const form = useForm({
@@ -97,16 +97,12 @@ const submit = () => {
             <div class="mt-4 flex items-center justify-end">
                 <Link
                     :href="route('login')"
-                    class="text-sm text-amber-400 hover:text-amber-300 transition-colors duration-300"
+                    class="text-sm text-amber-400 transition-colors duration-300 hover:text-amber-300"
                 >
                     Already registered?
                 </Link>
 
-                <Button
-                    class="ms-4"
-                    :disabled="form.processing"
-                    type="submit"
-                >
+                <Button class="ms-4" :disabled="form.processing" type="submit">
                     Register
                 </Button>
             </div>

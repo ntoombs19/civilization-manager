@@ -31,7 +31,7 @@ const deleteRecord = (url: string) => {
 </script>
 <template>
     <div v-if="props.actions.length > 0" class="flex items-center gap-3">
-        <div v-for="action in props.actions">
+        <div v-for="action in props.actions" :key="action.label">
             <Button
                 v-if="action.url && action.variant !== 'danger'"
                 size="sm"
@@ -70,7 +70,11 @@ const deleteRecord = (url: string) => {
                         >
                             Cancel
                         </Button>
-                        <Button variant="danger" size="sm" @click="() => deleteRecord(action.url)">
+                        <Button
+                            variant="danger"
+                            size="sm"
+                            @click="() => deleteRecord(action.url)"
+                        >
                             Delete
                         </Button>
                     </div>
