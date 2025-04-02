@@ -2,6 +2,7 @@
 import Actions, { ActionsType } from '@/Components/Actions.vue';
 import ApplicationLogo from '@/Components/ApplicationLogo.vue';
 import Breadcrumbs, { BreadcrumbsType } from '@/Components/Breadcrumbs.vue';
+import FlashMessage from '@/Components/FlashMessage.vue';
 import { PageProps } from '@/types';
 import { Link, usePage } from '@inertiajs/vue3';
 import { computed } from 'vue';
@@ -36,6 +37,7 @@ console.log(props.actions);
     <div
         class="flex min-h-screen flex-col bg-gradient-to-b from-stone-900 to-stone-800 font-serif"
     >
+        <FlashMessage />
         <nav
             class="border-b border-amber-900/30 bg-stone-900/80 backdrop-blur-sm"
         >

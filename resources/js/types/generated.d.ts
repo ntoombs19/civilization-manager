@@ -9,7 +9,7 @@ export type CivilizationData = {
     spyNames: Array<string>;
     historicalInfo: Array<{ text: string; heading: string }>;
     url: string;
-    leader: LeaderData;
+    leader: LeaderData | null;
 };
 export type LeaderData = {
     id: number;
@@ -21,4 +21,5 @@ export type LeaderData = {
     trait: { name: string; effect: string };
     titles: Array<string>;
     historicalInfo: Array<{ text: string; heading: string }>;
+    civilization: CivilizationData | null;
 };
