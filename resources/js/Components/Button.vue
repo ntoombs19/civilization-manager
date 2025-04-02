@@ -21,7 +21,7 @@ const props = withDefaults(defineProps<ButtonProps>(), {
 
 const classes = computed(() => {
     const base =
-        'relative inline-flex items-center justify-center font-semibold rounded border transition-all duration-300 uppercase tracking-wider relative overflow-hidden hover:text-stone-900';
+        'relative inline-flex items-center justify-center font-semibold rounded border transition-all duration-300 uppercase tracking-wider relative overflow-hidden';
 
     const widthClass = props.fullWidth ? 'w-full' : '';
 
@@ -33,12 +33,13 @@ const classes = computed(() => {
 
     const variantClasses = {
         primary:
-            'bg-gradient-to-b from-amber-500 to-amber-700 text-stone-900 border-amber-300 hover:from-amber-400 hover:to-amber-600 hover:shadow-lg hover:shadow-amber-600/40 hover:-translate-y-0.5',
+            'bg-gradient-to-b from-amber-500 to-amber-700 text-stone-900 border-amber-300 hover:from-amber-400 hover:to-amber-600 hover:shadow-lg hover:shadow-amber-600/40 hover:-translate-y-0.5 hover:text-stone-900',
         secondary:
             'bg-gradient-to-b from-amber-700 to-amber-900 text-amber-100 border-amber-600 hover:from-amber-600 hover:to-amber-800 hover:shadow-lg hover:shadow-amber-700/30 hover:-translate-y-0.5',
         outline:
             'bg-transparent border-amber-600 text-amber-400 hover:bg-amber-900/30 hover:text-amber-300 hover:border-amber-400 hover:-translate-y-0.5',
-        danger: 'inline-flex items-center rounded-md border border-transparent bg-red-600 tracking-widest text-white transition duration-150 ease-in-out hover:bg-red-500 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 active:bg-red-700 dark:focus:ring-offset-gray-800',
+        danger:
+            'bg-gradient-to-b from-red-600 to-red-800 text-stone-100 border-red-500 hover:from-red-500 hover:to-red-700 hover:shadow-lg hover:shadow-red-600/40 hover:-translate-y-0.5',
     };
 
     const disabledClasses = props.disabled
