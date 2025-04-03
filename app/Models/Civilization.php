@@ -11,19 +11,10 @@ class Civilization extends Model
         'name',
         'icon',
         'dawn_of_man',
-        'unique_buildings',
-        'unique_units',
-        'city_names',
-        'spy_names',
         'historical_info',
-        'url',
     ];
 
     protected $casts = [
-        'unique_buildings' => 'array',
-        'unique_units' => 'array',
-        'city_names' => 'array',
-        'spy_names' => 'array',
         'historical_info' => 'array',
     ];
 

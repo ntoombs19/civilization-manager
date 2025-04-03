@@ -76,12 +76,8 @@ class CivilizationController extends Controller
                 name: '',
                 icon: '',
                 dawnOfMan: '',
-                uniqueBuildings: [],
-                uniqueUnits: [],
-                cityNames: [],
-                spyNames: [],
                 historicalInfo: [],
-                url: '',
+                leader: null
             ),
         ]);
     }
@@ -92,12 +88,7 @@ class CivilizationController extends Controller
             'name' => 'required|string|max:255',
             'icon' => 'required|string|max:255',
             'dawnOfMan' => 'required|string',
-            'uniqueBuildings' => 'required|array',
-            'uniqueUnits' => 'required|array',
-            'cityNames' => 'required|array',
-            'spyNames' => 'required|array',
             'historicalInfo' => 'required|array',
-            'url' => 'required|string|max:255',
         ]);
 
         $data = CivilizationData::from([
@@ -105,12 +96,7 @@ class CivilizationController extends Controller
             'name' => $validated['name'],
             'icon' => $validated['icon'],
             'dawn_of_man' => $validated['dawnOfMan'],
-            'unique_buildings' => $validated['uniqueBuildings'],
-            'unique_units' => $validated['uniqueUnits'],
-            'city_names' => $validated['cityNames'],
-            'spy_names' => $validated['spyNames'],
             'historical_info' => $validated['historicalInfo'],
-            'url' => $validated['url'],
         ]);
 
         $civilization = Civilization::create($data->toDatabase());
@@ -136,12 +122,7 @@ class CivilizationController extends Controller
             'name' => 'required|string|max:255',
             'icon' => 'required|string|max:255',
             'dawnOfMan' => 'required|string',
-            'uniqueBuildings' => 'required|array',
-            'uniqueUnits' => 'required|array',
-            'cityNames' => 'required|array',
-            'spyNames' => 'required|array',
             'historicalInfo' => 'required|array',
-            'url' => 'required|string|max:255',
         ]);
 
         $data = CivilizationData::from([
@@ -149,12 +130,7 @@ class CivilizationController extends Controller
             'name' => $validated['name'],
             'icon' => $validated['icon'],
             'dawn_of_man' => $validated['dawnOfMan'],
-            'unique_buildings' => $validated['uniqueBuildings'],
-            'unique_units' => $validated['uniqueUnits'],
-            'city_names' => $validated['cityNames'],
-            'spy_names' => $validated['spyNames'],
             'historical_info' => $validated['historicalInfo'],
-            'url' => $validated['url'],
         ]);
 
         $civilization->update($data->toDatabase());

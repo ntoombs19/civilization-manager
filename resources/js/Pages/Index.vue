@@ -116,8 +116,7 @@ console.log(props);
                         <p
                             class="mb-6 text-center leading-relaxed text-amber-100/90"
                         >
-                            Discover the unique characteristics, units, and
-                            buildings of each civilization
+                            Discover the unique characteristics and history of each civilization
                         </p>
                         <Button
                             :href="route('civilizations.index')"

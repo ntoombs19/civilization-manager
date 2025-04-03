@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import Badge from '@/Components/Badge.vue';
 import EntityCard from '@/Components/EntityCard.vue';
 import PageHeader from '@/Components/PageHeader.vue';
 import Panel from '@/Components/Panel.vue';
@@ -69,64 +68,6 @@ defineProps<{
                         <p class="leading-relaxed text-amber-300">
                             {{ civilization.dawnOfMan }}
                         </p>
-                    </div>
-                    <div v-if="civilization.uniqueUnits.length > 0">
-                        <h2 class="mb-2 text-2xl font-bold text-amber-200">
-                            Unique Units
-                        </h2>
-                        <ul class="grid grid-cols-1 gap-4 md:grid-cols-2">
-                            <li
-                                v-for="unit in civilization.uniqueUnits"
-                                :key="unit.name"
-                            >
-                                {{ unit.name }}
-                            </li>
-                        </ul>
-                    </div>
-                    <div v-if="civilization.uniqueBuildings.length > 0">
-                        <h2 class="mb-2 text-2xl font-bold text-amber-200">
-                            Unique Buildings
-                        </h2>
-                        <ul class="grid grid-cols-1 gap-4 md:grid-cols-2">
-                            <li
-                                v-for="building in civilization.uniqueBuildings"
-                                :key="building.name"
-                            >
-                                {{ building.name }}
-                            </li>
-                        </ul>
-                    </div>
-                    <div v-if="civilization.cityNames.length > 0">
-                        <h2 class="mb-2 text-2xl font-bold text-amber-200">
-                            City Names
-                        </h2>
-                        <div
-                            class="rounded-lg border border-amber-800/30 bg-stone-900/50 p-4"
-                        >
-                            <div class="flex flex-wrap gap-2">
-                                <Badge
-                                    v-for="city in civilization.cityNames"
-                                    :key="city"
-                                    :text="city"
-                                />
-                            </div>
-                        </div>
-                    </div>
-                    <div v-if="civilization.spyNames.length > 0">
-                        <h2 class="mb-2 text-2xl font-bold text-amber-200">
-                            Spy Names
-                        </h2>
-                        <div
-                            class="rounded-lg border border-amber-800/30 bg-stone-900/50 p-4"
-                        >
-                            <div class="flex flex-wrap gap-2">
-                                <Badge
-                                    v-for="spy in civilization.spyNames"
-                                    :key="spy"
-                                    :text="spy"
-                                />
-                            </div>
-                        </div>
                     </div>
                     <div class="mt-12">
                         <h2 class="mb-6 text-2xl font-bold text-amber-200">

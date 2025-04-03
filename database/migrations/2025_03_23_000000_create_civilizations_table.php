@@ -13,12 +13,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('icon');
             $table->text('dawn_of_man');
-            $table->json('unique_buildings');
-            $table->json('unique_units');
-            $table->json('city_names');
-            $table->json('spy_names');
             $table->json('historical_info');
-            $table->string('url');
             $table->timestamps();
         });
     }

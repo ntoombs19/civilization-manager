@@ -3,12 +3,7 @@ export type CivilizationData = {
     name: string;
     icon: string;
     dawnOfMan: string;
-    uniqueBuildings: Array<{ url: string; name: string }>;
-    uniqueUnits: Array<{ url: string; name: string }>;
-    cityNames: Array<string>;
-    spyNames: Array<string>;
     historicalInfo: Array<{ text: string; heading: string }>;
-    url: string;
     leader: LeaderData | null;
 };
 export type LeaderData = {

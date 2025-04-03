@@ -17,7 +17,7 @@ class DataValidationTest extends TestCase
     {
         $this->expectException(CannotCreateData::class);
         $this->expectExceptionMessage('Parameters missing: id, civilizationId');
-        
+
         // Missing id and civilization_id
         LeaderData::from([
             'name' => 'Test Leader',
@@ -46,7 +46,7 @@ class DataValidationTest extends TestCase
     {
         $this->expectException(CannotCreateData::class);
         $this->expectExceptionMessage('Parameters missing: name');
-        
+
         // Missing name
         LeaderData::from([
             'id' => 1,
@@ -76,34 +76,19 @@ class DataValidationTest extends TestCase
     {
         $this->expectException(CannotCreateData::class);
         $this->expectExceptionMessage('Parameters missing: leader');
-        
+
         // Missing leader
         CivilizationData::from([
             'id' => 1,
             'name' => 'Test Civilization',
             'icon' => 'https://example.com/civ.png',
             'dawn_of_man' => 'Test dawn of man text',
-            'unique_buildings' => [
-                [
-                    'name' => 'Test Building',
-                    'url' => 'https://example.com/building.json'
-                ]
-            ],
-            'unique_units' => [
-                [
-                    'name' => 'Test Unit',
-                    'url' => 'https://example.com/unit.json'
-                ]
-            ],
-            'city_names' => ['City 1', 'City 2'],
-            'spy_names' => ['Spy 1', 'Spy 2'],
             'historical_info' => [
                 [
                     'title' => 'Test Title',
                     'content' => 'Test Content'
                 ]
             ],
-            'url' => 'https://example.com/civilization.json'
         ]);
     }
-} 
+}

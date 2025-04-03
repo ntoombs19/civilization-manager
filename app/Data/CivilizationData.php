@@ -19,22 +19,9 @@ class CivilizationData extends Data
         public string $icon,
         #[MapInputName('dawn_of_man')]
         public string $dawnOfMan,
-        #[MapInputName('unique_buildings')]
-        #[LiteralTypeScriptType('Array<{url: string, name: string}>')]
-        public array $uniqueBuildings,
-        #[MapInputName('unique_units')]
-        #[LiteralTypeScriptType('Array<{url: string, name: string}>')]
-        public array $uniqueUnits,
-        #[MapInputName('city_names')]
-        #[TypeScriptType('string[]')]
-        public array $cityNames,
-        #[MapInputName('spy_names')]
-        #[TypeScriptType('string[]')]
-        public array $spyNames,
         #[MapInputName('historical_info')]
         #[LiteralTypeScriptType('Array<{text: string, heading: string}>')]
         public array $historicalInfo,
-        public string $url,
         public ?LeaderData $leader = null,
     ) {
     }
@@ -48,12 +35,7 @@ class CivilizationData extends Data
             'name' => $this->name,
             'icon' => $this->icon,
             'dawn_of_man' => $this->dawnOfMan,
-            'unique_buildings' => $this->uniqueBuildings,
-            'unique_units' => $this->uniqueUnits,
-            'city_names' => $this->cityNames,
-            'spy_names' => $this->spyNames,
             'historical_info' => $this->historicalInfo,
-            'url' => $this->url,
         ];
     }
 }

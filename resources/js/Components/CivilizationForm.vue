@@ -25,51 +25,13 @@ const form = useForm({
     name: props.civilization.name,
     icon: props.civilization.icon,
     dawnOfMan: props.civilization.dawnOfMan,
-    uniqueBuildings: props.civilization.uniqueBuildings,
-    uniqueUnits: props.civilization.uniqueUnits,
-    cityNames: props.civilization.cityNames,
-    spyNames: props.civilization.spyNames,
     historicalInfo: props.civilization.historicalInfo,
-    url: props.civilization.url,
 });
-
-// Function to add new items to arrays
-const addNewBuilding = () => {
-    form.uniqueBuildings.push({ name: '', url: '' });
-};
-
-const addNewUnit = () => {
-    form.uniqueUnits.push({ name: '', url: '' });
-};
-
-const addNewCity = () => {
-    form.cityNames.push('');
-};
-
-const addNewSpy = () => {
-    form.spyNames.push('');
-};
 
 const addNewHistoricalInfo = () => {
     form.historicalInfo.push({ heading: '', text: '' });
 };
 
-// Functions to remove items from arrays
-const removeBuilding = (index: number) => {
-    form.uniqueBuildings.splice(index, 1);
-};
-
-const removeUnit = (index: number) => {
-    form.uniqueUnits.splice(index, 1);
-};
-
-const removeCity = (index: number) => {
-    form.cityNames.splice(index, 1);
-};
-
-const removeSpy = (index: number) => {
-    form.spyNames.splice(index, 1);
-};
 
 const removeHistoricalInfo = (index: number) => {
     form.historicalInfo.splice(index, 1);
@@ -118,187 +80,6 @@ const submit = () => {
                         required
                     />
                     <InputError :message="form.errors.dawnOfMan" class="mt-2" />
-                </div>
-
-                <!-- Unique Buildings -->
-                <div>
-                    <div class="flex items-center justify-between">
-                        <InputLabel
-                            for="uniqueBuildings"
-                            value="Unique Buildings"
-                        />
-                        <button
-                            type="button"
-                            @click="addNewBuilding"
-                            class="text-sm text-amber-400 hover:text-amber-300"
-                        >
-                            + Add Building
-                        </button>
-                    </div>
-                    <div
-                        v-for="(building, index) in form.uniqueBuildings"
-                        :key="index"
-                        class="mt-2 flex items-start gap-2"
-                    >
-                        <div class="flex-1">
-                            <TextInput
-                                :id="`building-name-${index}`"
-                                v-model="building.name"
-                                type="text"
-                                placeholder="Building name"
-                                class="w-full"
-                                required
-                            />
-                        </div>
-                        <div class="flex-1">
-                            <TextInput
-                                :id="`building-url-${index}`"
-                                v-model="building.url"
-                                type="text"
-                                placeholder="URL"
-                                class="w-full"
-                                required
-                            />
-                        </div>
-                        <button
-                            type="button"
-                            @click="removeBuilding(index)"
-                            class="mt-2 text-red-500 hover:text-red-400"
-                        >
-                            Remove
-                        </button>
-                    </div>
-                    <InputError
-                        :message="form.errors.uniqueBuildings"
-                        class="mt-2"
-                    />
-                </div>
-
-                <!-- Unique Units -->
-                <div>
-                    <div class="flex items-center justify-between">
-                        <InputLabel for="uniqueUnits" value="Unique Units" />
-                        <button
-                            type="button"
-                            @click="addNewUnit"
-                            class="text-sm text-amber-400 hover:text-amber-300"
-                        >
-                            + Add Unit
-                        </button>
-                    </div>
-                    <div
-                        v-for="(unit, index) in form.uniqueUnits"
-                        :key="index"
-                        class="mt-2 flex items-start gap-2"
-                    >
-                        <div class="flex-1">
-                            <TextInput
-                                :id="`unit-name-${index}`"
-                                v-model="unit.name"
-                                type="text"
-                                placeholder="Unit name"
-                                class="w-full"
-                                required
-                            />
-                        </div>
-                        <div class="flex-1">
-                            <TextInput
-                                :id="`unit-url-${index}`"
-                                v-model="unit.url"
-                                type="text"
-                                placeholder="URL"
-                                class="w-full"
-                                required
-                            />
-                        </div>
-                        <button
-                            type="button"
-                            @click="removeUnit(index)"
-                            class="mt-2 text-red-500 hover:text-red-400"
-                        >
-                            Remove
-                        </button>
-                    </div>
-                    <InputError
-                        :message="form.errors.uniqueUnits"
-                        class="mt-2"
-                    />
-                </div>
-
-                <!-- City Names -->
-                <div>
-                    <div class="flex items-center justify-between">
-                        <InputLabel for="cityNames" value="City Names" />
-                        <button
-                            type="button"
-                            @click="addNewCity"
-                            class="text-sm text-amber-400 hover:text-amber-300"
-                        >
-                            + Add City
-                        </button>
-                    </div>
-                    <div
-                        v-for="(city, index) in form.cityNames"
-                        :key="index"
-                        class="mt-2 flex items-start gap-2"
-                    >
-                        <div class="flex-1">
-                            <TextInput
-                                :id="`city-${index}`"
-                                v-model="form.cityNames[index]"
-                                type="text"
-                                placeholder="City name"
-                                class="w-full"
-                                required
-                            />
-                        </div>
-                        <button
-                            type="button"
-                            @click="removeCity(index)"
-                            class="mt-2 text-red-500 hover:text-red-400"
-                        >
-                            Remove
-                        </button>
-                    </div>
-                    <InputError :message="form.errors.cityNames" class="mt-2" />
-                </div>
-
-                <!-- Spy Names -->
-                <div>
-                    <div class="flex items-center justify-between">
-                        <InputLabel for="spyNames" value="Spy Names" />
-                        <button
-                            type="button"
-                            @click="addNewSpy"
-                            class="text-sm text-amber-400 hover:text-amber-300"
-                        >
-                            + Add Spy
-                        </button>
-                    </div>
-                    <div
-                        v-for="(spy, index) in form.spyNames"
-                        :key="index"
-                        class="mt-2 flex items-start gap-2"
-                    >
-                        <div class="flex-1">
-                            <TextInput
-                                :id="`spy-${index}`"
-                                v-model="form.spyNames[index]"
-                                type="text"
-                                placeholder="Spy name"
-                                class="w-full"
-                                required
-                            />
-                        </div>
-                        <button
-                            type="button"
-                            @click="removeSpy(index)"
-                            class="mt-2 text-red-500 hover:text-red-400"
-                        >
-                            Remove
-                        </button>
-                    </div>
-                    <InputError :message="form.errors.spyNames" class="mt-2" />
                 </div>
 
                 <!-- Historical Info -->
@@ -356,20 +137,8 @@ const submit = () => {
                     />
                 </div>
 
-                <div>
-                    <InputLabel for="url" value="URL" />
-                    <TextInput
-                        id="url"
-                        v-model="form.url"
-                        type="text"
-                        class="mt-1 block w-full"
-                        required
-                    />
-                    <InputError :message="form.errors.url" class="mt-2" />
-                </div>
-
                 <div class="flex items-center justify-end gap-4">
-                    <Button :disabled="form.processing">{{
+                    <Button type="submit" :disabled="form.processing">{{
                         submitLabel
                     }}</Button>
                 </div>

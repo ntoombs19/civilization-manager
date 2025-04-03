@@ -246,7 +246,7 @@ const submit = () => {
                 </div>
 
                 <div class="flex items-center justify-end gap-4">
-                    <Button :disabled="form.processing">{{
+                    <Button type="submit" :disabled="form.processing">{{
                         submitLabel
                     }}</Button>
                 </div>
