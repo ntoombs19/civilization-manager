@@ -10,7 +10,8 @@ return new class extends Migration
     {
         Schema::create('leaders', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('civilization_id')->constrained()->onDelete('cascade');
+            // We need to be able to create a leader without a civilization and vice versa
+            $table->foreignId('civilization_id')->unique()->nullable()->constrained()->onDelete('cascade');
             $table->string('name');
             $table->string('subtitle');
             $table->string('lived');

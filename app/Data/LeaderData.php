@@ -17,7 +17,7 @@ class LeaderData extends Data
         public int $id,
         #[MapInputName('civilization_id')]
         #[WithoutValidation]
-        public int $civilizationId,
+        public ?int $civilizationId = null,
         public string $name,
         public string $subtitle,
         public string $lived,

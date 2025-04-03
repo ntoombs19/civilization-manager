@@ -2,16 +2,11 @@
 
 namespace App\Models;
 
-use Database\Factories\LeaderFactory;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Leader extends Model
 {
-    /** @use HasFactory<LeaderFactory> */
-    use HasFactory;
-
     protected $fillable = [
         'civilization_id',
         'name',

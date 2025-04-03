@@ -13,7 +13,7 @@ export type CivilizationData = {
 };
 export type LeaderData = {
     id: number;
-    civilizationId: number;
+    civilizationId: number | null;
     name: string;
     subtitle: string;
     lived: string;

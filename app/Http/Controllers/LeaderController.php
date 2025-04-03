@@ -78,7 +78,7 @@ class LeaderController extends Controller
         return Inertia::render('Leaders/Create', [
             'leader' => new LeaderData(
                 id: 0,
-                civilizationId: 0,
+                civilizationId: null,
                 name: '',
                 subtitle: '',
                 lived: '',
@@ -94,7 +94,7 @@ class LeaderController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'civilizationId' => 'required|exists:civilizations,id',
+            'civilizationId' => 'nullable|exists:civilizations,id',
             'name' => 'required|string|max:255',
             'subtitle' => 'required|string|max:255',
             'lived' => 'required|string|max:255',
@@ -140,7 +140,7 @@ class LeaderController extends Controller
         $leader = Leader::findOrFail($id);
 
         $validated = $request->validate([
-            'civilizationId' => 'required|exists:civilizations,id',
+            'civilizationId' => 'nullable|exists:civilizations,id',
             'name' => 'required|string|max:255',
             'subtitle' => 'required|string|max:255',
             'lived' => 'required|string|max:255',

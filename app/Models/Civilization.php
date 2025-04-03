@@ -2,16 +2,11 @@
 
 namespace App\Models;
 
-use Database\Factories\CivilizationFactory;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Civilization extends Model
 {
-    /** @use HasFactory<CivilizationFactory> */
-    use HasFactory;
-
     protected $fillable = [
         'name',
         'icon',
